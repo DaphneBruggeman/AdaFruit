@@ -1,0 +1,37 @@
+input.buttonB.onEvent(ButtonEvent.Click, function () {
+    x = 800
+    ledNummer = -1
+})
+input.buttonA.onEvent(ButtonEvent.Click, function () {
+    if (ledNummer == 2) {
+        x += -100
+        light.showRing(
+        `black black green black black black black black black black`
+        )
+    } else {
+        light.showRing(
+        `red red red red red red red red red red`
+        )
+        x = 800
+        music.setVolume(100)
+        music.powerDown.playUntilDone()
+        light.clear()
+    }
+    ledNummer = -1
+})
+let x = 0
+let ledNummer = 0
+ledNummer = 0
+x = 800
+forever(function () {
+    light.setPixelColor(ledNummer, 0xff0080)
+    pause(x)
+    ledNummer += 1
+    light.clear()
+    if (ledNummer == 10) {
+        ledNummer = 0
+    }
+    if (x == 0) {
+        light.showAnimation(light.rainbowAnimation, 2000)
+    }
+})
